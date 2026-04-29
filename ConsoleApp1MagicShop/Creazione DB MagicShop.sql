@@ -1,5 +1,5 @@
 -- Attenzione: decommentare solo in caso di reset del database
- DROP DATABASE IF EXISTS magicshop;
+ -- DROP DATABASE IF EXISTS magicshop;
 
 CREATE DATABASE IF NOT EXISTS MagicShop;
 
