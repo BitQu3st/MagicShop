@@ -11,15 +11,11 @@ namespace MagicShop.UX
     internal class PlayerMenu
     {
         private readonly DatabaseManager _db;
-        private User _currentUser;
 
         //Property che "espone" l user attuale del campo della classe.
         //il set lo uso piu che altro in previsione di aggiunta di feature di modifica del User(es. cambio username)
 
-        public User CurrentUser
-        {
-            get => _currentUser; private set => _currentUser = value;
-        }
+        public User CurrentUser { get; private set; }
 
         public PlayerMenu(User user, DatabaseManager db)
         {
