@@ -12,7 +12,9 @@ namespace MagicShop.Database
 
         public DatabaseManager()
         {
-            _connString = GetConnectionStringJson("appsettingsdev.json");
+            
+                _connString = GetConnectionStringJson("appsettingsdev.json");
+            
         }
 
         private string? GetConnectionStringJson(string jsonFile)
