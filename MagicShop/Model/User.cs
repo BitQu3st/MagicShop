@@ -6,14 +6,17 @@
         private string _userName = "", _passwordHash = "";
         private int _gold;
 
-        public User(string userName, string passwordHashed, int gold)
+        //TODO Implementare invetario una volta finita la classe Inventory
+        private readonly Inventory inventory = new Inventory();
+
+        public User(string userName, string passwordHash, int gold)
         {
             Username = userName;
-            PasswordHash = passwordHashed;
+            PasswordHash = passwordHash;
             Gold = gold;
         }
 
-        public User(string userName, string password) : this(userName, password, 500)
+        public User(string userName, string passwordHash) : this(userName, passwordHash, 500)
         { }
 
         //TODO: Da implementare quando creato classe inventario
@@ -59,6 +62,23 @@
                 }
                 _passwordHash = value;
             }
+        }
+
+        public bool TryAddGold(int gold)
+        {
+            if (gold <= 0) return false;
+
+            Gold += gold;
+            return true;
+        }
+
+        public bool TryRemoveGold(int gold)
+        {
+            if (gold <= 0) return false;
+            if (Gold < gold) return false;
+
+            Gold -= gold;
+            return true;
         }
     }
 }

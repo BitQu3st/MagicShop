@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-
-namespace MagicShop.Model
+﻿namespace MagicShop.Model
 {
     internal class ItemInventory
     {
@@ -29,16 +24,10 @@ namespace MagicShop.Model
 
         public ItemInventory(Item item, int quantity, int maxStack)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
+            ArgumentNullException.ThrowIfNull(item);
             Item = item;
 
-            if (maxStack <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(maxStack));
-            }
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maxStack);
             MaxStack = maxStack;
 
             if (quantity > MaxStack ||
@@ -60,14 +49,18 @@ namespace MagicShop.Model
 
         private bool CanAddQuantity(int addingQuantity)
         {
-            return !(addingQuantity <= 0 ||
-                (Quantity + addingQuantity) > MaxStack);
+            if (addingQuantity <= 0) return false;
+            if ((Quantity + addingQuantity) > MaxStack) return false;
+
+            return true;
         }
 
         private bool CanRemoveQuantity(int removingQuantity)
         {
-            return !(removingQuantity <= 0 ||
-                (Quantity - removingQuantity) < 0);
+            if (removingQuantity <= 0) return false;
+            if (Quantity < removingQuantity) return false;
+
+            return true;
         }
 
         public bool TryAddQuantity(int addingQuantity)
@@ -92,6 +85,11 @@ namespace MagicShop.Model
             }
 
             return false;
+        }
+
+        public override string ToString()
+        {
+            return $"{Item.Name} - x{Quantity}";
         }
     }
 }

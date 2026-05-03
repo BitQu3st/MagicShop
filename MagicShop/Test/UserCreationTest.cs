@@ -10,8 +10,6 @@ namespace MagicShop.Test
     {
         public static async Task Main()
         {
-            //TODO: testa la creazione di un utente e poi verifica nel db che la password sia hashata
-            //e che recuperandola con query qui riesci a verificare che sia uguale a quella in chiaro.
             DatabaseManager db = new();
 
             //password che devo immettere per verificare hashing
@@ -35,7 +33,7 @@ namespace MagicShop.Test
                     Console.WriteLine("Utente creato!");
 
                     Console.Write("Corrispondenza password plain vs Db: ");
-                    Console.WriteLine(AuthService.VerifyHashPassword(passwordDiVerifica, user.PasswordHash));
+                    Console.WriteLine(AuthService.VerifyPasswordHash(passwordDiVerifica, user.PasswordHash));
                 }
             }
         }
